@@ -78,7 +78,7 @@ Gemini is the default here for an honest reason: this project was built by a sol
 
 ## Architecture
 
-![Architecture](docs/architecture.svg)
+![Architecture](architecture.svg)
 
 ```
 cron ping (every 10 min)  ──►  POST /cycle
