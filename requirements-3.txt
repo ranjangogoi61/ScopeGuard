@@ -1,0 +1,6 @@
+strands-agents[litellm]>=1.0.0
+strands-agents-tools
+fastapi
+uvicorn[standard]
+pydantic>=2
+python-multipart
