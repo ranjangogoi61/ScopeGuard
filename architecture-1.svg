@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="780" viewBox="0 0 940 780" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8a93a0"/>
+    </marker>
+    <style>
+      .t{fill:#15181d;font-size:14px;font-weight:600}
+      .s{fill:#6b7280;font-size:11.5px}
+      .m{fill:#6b7280;font-size:11px;font-style:italic}
+      .lbl{fill:#8a93a0;font-size:11px}
+      .box{fill:#ffffff;stroke:#dfe3e8;stroke-width:1.2;rx:10}
+      .agent{fill:#f4f7ff;stroke:#b9caf5;stroke-width:1.4;rx:10}
+      .det{fill:#f1faf5;stroke:#a9dcc4;stroke-width:1.4;rx:10}
+      .human{fill:#fffbeb;stroke:#f0d68a;stroke-width:1.6;rx:10}
+      .ln{stroke:#8a93a0;stroke-width:1.4;fill:none;marker-end:url(#a)}
+      .hd{fill:#1f5eff;font-size:10.5px;font-weight:700;letter-spacing:.08em}
+      .hg{fill:#0f7b56;font-size:10.5px;font-weight:700;letter-spacing:.08em}
+      .hy{fill:#b45309;font-size:10.5px;font-weight:700;letter-spacing:.08em}
+    </style>
+  </defs>
+
+  <rect width="940" height="780" fill="#fbfcfd"/>
+  <text x="34" y="40" class="t" font-size="19">ScopeGuard — agent architecture</text>
+  <text x="34" y="60" class="s">Three Strands agents · deterministic orchestration · one human decision point</text>
+
+  <!-- trigger -->
+  <rect x="34" y="86" width="250" height="56" class="box"/>
+  <text x="48" y="108" class="t">External cron ping</text>
+  <text x="48" y="126" class="s">POST /cycle · every 10 minutes</text>
+
+  <rect x="316" y="86" width="250" height="56" class="box"/>
+  <text x="330" y="108" class="t">Inbox adapter</text>
+  <text x="330" y="126" class="s">seeded dataset · real impl stubbed</text>
+
+  <path d="M284 114 H310" class="ln"/>
+  <path d="M441 142 V178" class="ln"/>
+
+  <!-- ScopeAnalyst -->
+  <rect x="246" y="178" width="390" height="92" class="agent"/>
+  <text x="264" y="200" class="hd">STRANDS AGENT</text>
+  <text x="264" y="222" class="t">ScopeAnalyst</text>
+  <text x="264" y="240" class="s">tools: get_scope_of_work · get_client_context</text>
+  <text x="264" y="258" class="s">→ ScopeVerdict {out_of_scope, clause_cited, confidence}</text>
+
+  <!-- data store -->
+  <rect x="686" y="178" width="220" height="92" class="box"/>
+  <text x="702" y="200" class="t">SQLite</text>
+  <text x="702" y="220" class="s">clients · SOWs · messages</text>
+  <text x="702" y="238" class="s">decisions · audit · voice samples</text>
+  <text x="702" y="258" class="m">re-seeds on cold start</text>
+  <path d="M640 224 H682" class="ln"/>
+
+  <!-- branch -->
+  <path d="M340 270 V310" class="ln"/>
+  <text x="200" y="296" class="lbl">in scope / routine</text>
+  <path d="M545 270 V310" class="ln"/>
+  <text x="556" y="296" class="lbl">out of scope</text>
+
+  <rect x="150" y="310" width="230" height="56" class="box"/>
+  <text x="166" y="332" class="t">Logged quietly</text>
+  <text x="166" y="350" class="s">no human contact · counted</text>
+
+  <!-- Verifier -->
+  <rect x="418" y="310" width="390" height="92" class="agent"/>
+  <text x="436" y="332" class="hd">STRANDS AGENT</text>
+  <text x="436" y="354" class="t">Verifier — argues against escalating</text>
+  <text x="436" y="372" class="s">tool: get_scope_of_work</text>
+  <text x="436" y="390" class="s">→ VerifierVerdict {agrees_with_escalation, counter_argument}</text>
+
+  <path d="M470 402 V442" class="ln"/>
+  <text x="330" y="428" class="lbl">stands down</text>
+  <path d="M700 402 V442" class="ln"/>
+  <text x="712" y="428" class="lbl">agrees</text>
+
+  <rect x="286" y="442" width="248" height="56" class="box"/>
+  <text x="302" y="464" class="t">Stood down</text>
+  <text x="302" y="482" class="s">suppressed + reasoning logged</text>
+
+  <!-- deterministic pricing -->
+  <rect x="570" y="442" width="336" height="60" class="det"/>
+  <text x="588" y="464" class="hg">DETERMINISTIC PYTHON</text>
+  <text x="588" y="486" class="t">calculate_change_order(hours × rate)</text>
+
+  <path d="M738 502 V538" class="ln"/>
+
+  <!-- Drafter -->
+  <rect x="516" y="538" width="390" height="80" class="agent"/>
+  <text x="534" y="560" class="hd">STRANDS AGENT</text>
+  <text x="534" y="582" class="t">Drafter</text>
+  <text x="534" y="600" class="s">tone calibrated by payment history → DraftOutput</text>
+
+  <path d="M711 618 V654" class="ln"/>
+
+  <!-- human gate -->
+  <rect x="446" y="654" width="460" height="86" class="human"/>
+  <text x="464" y="676" class="hy">HUMAN DECISION POINT</text>
+  <text x="464" y="698" class="t">Approve · Edit · Dismiss</text>
+  <text x="464" y="716" class="s">Nothing is ever sent without a human pressing approve.</text>
+  <text x="464" y="732" class="m">An edit is stored as a voice sample for future drafts.</text>
+
+  <!-- trace note -->
+  <rect x="34" y="538" width="330" height="86" class="box"/>
+  <text x="50" y="560" class="t">Tool-invocation trace</text>
+  <text x="50" y="580" class="s">Every tool call is recorded and shown</text>
+  <text x="50" y="598" class="s">in the UI under “Show the agent’s working”.</text>
+  <text x="50" y="616" class="m">The agent is inspectable, not a black box.</text>
+</svg>
